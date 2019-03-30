@@ -11,15 +11,13 @@ import { PessoasModule } from './pessoas/pessoas.module';
 // Meus componentes
 import { NavbarComponent } from './navbar/navbar.component';
 
-import { MessageComponent } from './message/message.component';
 import { LancamentosModule } from './lancamentos/lancamentos.module';
 import { MenubarModule } from 'primeng/components/menubar/menubar';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent,
-    MessageComponent
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
@@ -27,7 +25,6 @@ import { MenubarModule } from 'primeng/components/menubar/menubar';
     FormsModule,
     LancamentosModule,
     PessoasModule,
-
     MenubarModule,
   ],
   providers: [ ],

@@ -26,8 +26,8 @@
                     name="vencimento" ngModel #vencimento="ngModel"
                     dateFormat="dd/mm/yy">
                 </p-calendar>
-              <!-- <app-message [control]="vencimento" error="required" 
-                text="Informe uma data de vencimento"></app-message> -->
+              <app-message [control]="vencimento" error="required" 
+                text="Informe uma data de vencimento"></app-message>
             </div>
 
             <div class="ui-g-6 ui-md-2 ui-fluid">
@@ -41,12 +41,12 @@
                          style="resize: none;" name="descricao" required
                          minlength="5"></textarea>
 
-                <!-- <app-message [control]="descricao" error="required" 
+                <app-message [control]="descricao" error="required" 
                 text="Informe uma descrição"></app-message>
 
                 <app-message [control]="descricao" error="minlength" 
                 text="Mínimo de {{ descricao?.errors?.minlength?.requiredLength }} caracteres. Você digitou apenas {{ descricao?.errors?.minlength?.actualLength }}">
-                </app-message> -->
+                </app-message>
             </div>
 
             <div class="ui-g-12 ui-md-6 ui-fluid">

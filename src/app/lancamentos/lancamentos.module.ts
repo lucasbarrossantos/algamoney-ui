@@ -17,6 +17,7 @@ import { MenubarModule } from 'primeng/components/menubar/menubar';
 import { CardModule } from 'primeng/components/card/card';
 import { InputTextareaModule } from 'primeng/components/inputtextarea/inputtextarea';
 import { DropdownModule } from 'primeng/components/dropdown/dropdown';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,9 @@ import { DropdownModule } from 'primeng/components/dropdown/dropdown';
 
     // Vendors
     CurrencyMaskModule,
+
+    // Shared
+    SharedModule,
   ],
   exports: [
     LancamentoCadastroComponent,
