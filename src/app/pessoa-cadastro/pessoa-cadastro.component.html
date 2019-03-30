@@ -1,0 +1,82 @@
+<div class="container-custom">
+        <p-card styleClass="ui-card-shadow">
+            <div class="ui-g">
+              <form autocomplete="off">
+                  <div class="ui-g-12">
+                      <h1>Nova pessoa</h1>
+                  </div>
+      
+                  <div class="ui-g-12 ui-md-12 ui-fluid">
+                      <label>Nome</label>
+                      <input pInputText minlength="5" required
+                        ngModel name="nome" #nome="ngModel"/>
+
+                      <app-message [control]="nome" error="required" 
+                        text="Informe o nome"></app-message>
+
+                        <app-message [control]="nome" error="minlength" 
+                        text="Mínimo de {{ nome?.errors?.minlength?.requiredLength }} caracteres.">
+                </app-message>
+                  </div>
+    
+      
+                  <div class="ui-g-12 ui-md-10 ui-fluid">
+                        <label>Logradouro</label>
+                        <input pInputText required
+                        ngModel name="logradouro" #logradouro="ngModel"/>
+
+                      <app-message [control]="logradouro" error="required" 
+                        text="Informe o logradouro"></app-message>
+                  </div>
+
+                  <div class="ui-g-12 ui-md-2 ui-fluid">
+                        <label>Número</label>
+                        <input pInputText />
+                  </div>
+
+                  <div class="ui-g-12 ui-md-5 ui-fluid">
+                        <label>Complemento</label>
+                        <input pInputText/>
+                  </div>
+
+                  <div class="ui-g-12 ui-md-5 ui-fluid">
+                        <label>Bairro</label>
+                        <input pInputText required
+                        ngModel name="bairro" #bairro="ngModel"/>
+
+                      <app-message [control]="bairro" error="required" 
+                        text="Informe o bairro"></app-message>
+                  </div>
+
+                  <div class="ui-g-12 ui-md-2 ui-fluid">
+                        <label style="text-align: right;">CEP</label>
+                        <p-inputMask mask="99999-999" placeholder="99999-999"></p-inputMask>
+                  </div>
+
+                  <div class="ui-g-12 ui-md-5 ui-fluid">
+                        <label>Cidade</label>
+                        <input pInputText required
+                        ngModel name="cidade" #cidade="ngModel"/>
+
+                      <app-message [control]="cidade" error="required" 
+                        text="Informe a cidade"></app-message>
+                  </div>
+
+                  <div class="ui-g-12 ui-md-5 ui-fluid">
+                        <label>Estado</label>
+                        <input pInputText required
+                        ngModel name="estado" #estado="ngModel"/>
+
+                      <app-message [control]="estado" error="required" 
+                        text="Informe o estado"></app-message>
+                  </div>
+      
+                  <div class="ui-g-12">
+                      <button pButton type="submit" label="Salvar" class="ui-button-success btn-margin"></button>
+                      <button pButton type="submit" label="Cancelar" class="ui-button-info"></button>
+                  </div>
+              </form>
+        </div>
+    </p-card>
+</div>
+      
