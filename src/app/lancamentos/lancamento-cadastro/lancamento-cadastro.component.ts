@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {Validators, FormControl, FormGroup, FormBuilder} from '@angular/forms';
 
 @Component({
   selector: 'app-lancamento-cadastro',
