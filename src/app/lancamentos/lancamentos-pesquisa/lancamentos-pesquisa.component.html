@@ -2,31 +2,32 @@
 
     <p-card styleClass="ui-card-shadow">
         <div class="ui-g">
-
-                <div class="ui-g-12">
+            <form autocomplete="off" (ngSubmit)="pesquisar()">
+                <div class="ui-g-12 ui-md-12 ui-fluid">
                     <h1>Lançamentos</h1>
                 </div>
             
                 <div class="ui-g-12 ui-md-6 ui-fluid">
                     <label> Descrição </label>
-                    <input type="text" pInputText />
+                    <input type="text" pInputText 
+                    name="filtro.descricao" [(ngModel)]="filtro.descricao"/>
                 </div>
 
                 <div class="ui-g-12 ui-md-6 ui-fluid">
-                        <label> Pessoa </label>
-                        <input type="text" pInputText />
-                    </div>
+                    <label> Pessoa </label>
+                    <input type="text" pInputText />
+                </div>
             
-                <div class="ui-g-12">
+                <div class="ui-g-12 ui-md-12">
                     <label style="display: block;">Vencimento</label>
-                    <p-calendar [showIcon]="true" [locale]="pt"
-                        dateFormat="dd/mm/yy">
+                    <p-calendar [showIcon]="true" [locale]="pt" name="filtro.dataDeVencimentoDe"
+                        dateFormat="dd/mm/yy" [(ngModel)]="filtro.dataDeVencimentoDe">
                     </p-calendar>
             
                     <label style="margin-left: 5px; margin-right: 5px;">Até</label>
                     
-                    <p-calendar [showIcon]="true"
-                        dateFormat="dd/mm/yy" [locale]="pt">
+                    <p-calendar [showIcon]="true" [(ngModel)]="filtro.dataDeVencimentoAte"
+                        dateFormat="dd/mm/yy" name="filtro.dataDeVencimentoAte" [locale]="pt">
                     </p-calendar>
                 </div>
             
@@ -35,12 +36,12 @@
                     <a pButton label="Novo Lançamento" class="ui-button-info" 
                         style="float: right"> </a>
                 </div>
-            
-            </div>
+            </form>
             
             <div class="ui-g">
                 <div class="ui-g-12">
-                    <p-table [value]="lancamentos" [paginator]="true" [rows]="6" [responsive]="true">
+                    <p-table [value]="lancamentos" [paginator]="true"
+                             [rows]="6" [responsive]="true">
                         <ng-template pTemplate="header">
                             <tr>
                                 <th>Pessoa</th>
@@ -72,12 +73,19 @@
                                 </td>
                             </tr>
                         </ng-template>
+                        <ng-template pTemplate="emptymessage" let-columns>
+                            <tr>
+                                <td [attr.colspan]="6">
+                                    Nenhum lançamento encontrado.
+                                </td>
+                            </tr>
+                        </ng-template>
                     </p-table>
             
                 </div>
             
         </div>
-
-    </p-card>            
+    </div>
+</p-card>           
 
 </div>
