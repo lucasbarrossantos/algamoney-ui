@@ -40,8 +40,13 @@
             
             <div class="ui-g">
                 <div class="ui-g-12">
-                    <p-table [value]="lancamentos" [paginator]="true"
-                             [rows]="6" [responsive]="true">
+                    <!-- [lazy]="true" : Busca os dados por demanda -->
+                    <!-- [totalRecords]="" : Total de registros que a consulta traz -->
+                    <!-- (onLazyLoad)="onMudarPagina()": Chamado sempre que clicar na navegacao da p. -->
+                    <p-table [value]="lancamentos" [responsive]="true"
+                             [rows]="filtro.itensPorPagina" [paginator]="true"
+                             [lazy]="true" [totalRecords]="totalRegistros"
+                             (onLazyLoad)="onMudarPagina($event)">
                         <ng-template pTemplate="header">
                             <tr>
                                 <th>Pessoa</th>
