@@ -1,8 +1,8 @@
-import { LancamentoService, LancamentoFilter } from './../lancamento.service';
+import { LancamentoService } from './../lancamento.service';
 import { Component, OnInit } from '@angular/core';
-import * as moment from 'moment';
 import { Lancamento } from 'src/app/shared/model/lancamento.model';
 import { LazyLoadEvent } from 'primeng/components/common/api';
+import { LancamentoFilter } from 'src/app/shared/model/filtros/lancamento.filter';
 
 @Component({
   selector: 'app-lancamentos-pesquisa',

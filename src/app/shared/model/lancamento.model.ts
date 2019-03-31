@@ -7,7 +7,7 @@ export const enum TipoLancamento {
 
 export class Lancamento {
   constructor(
-      public id?: number,
+      public codigo?: number,
       public descricao?: string,
       public dataVencimento?: Moment,
       public dataPagamento?: Moment,

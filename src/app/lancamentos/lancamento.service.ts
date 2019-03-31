@@ -4,17 +4,7 @@ import { Observable } from 'rxjs';
 import * as moment from 'moment';
 import { map } from 'rxjs/operators';
 import { Lancamento } from '../shared/model/lancamento.model';
-
-export class LancamentoFilter {
-  descricao: string;
-  dataDeVencimentoDe: Date;
-  dataDeVencimentoAte: Date;
-  pagina: number;
-  itensPorPagina = 7;
-}
-
-type EntityResponseType = HttpResponse<Lancamento>;
-type EntityArrayResponseType = HttpResponse<Lancamento[]>;
+import { LancamentoFilter } from '../shared/model/filtros/lancamento.filter';
 
 @Injectable({ providedIn: 'root' })
 export class LancamentoService {
@@ -23,7 +13,7 @@ export class LancamentoService {
 
   constructor(private http: HttpClient) { }
 
-  pesquisar(filtro: LancamentoFilter): Observable<EntityArrayResponseType> {
+  pesquisar(filtro: LancamentoFilter): Observable<any> {
     let param = new HttpParams();
 
     param = this.filtros(filtro, param);
@@ -35,12 +25,12 @@ export class LancamentoService {
           'Content-Type':  'application/json',
           Authorization: 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg=='
         })
-      }).pipe(map((res: EntityArrayResponseType) => this.convertDateArrayFromServer(res)));
+      }).pipe(map((res: any) => this.convertDateArrayFromServer(res)));
 
   }
 
 
-  private filtros(filtro: LancamentoFilter, param: HttpParams) {
+  private filtros(filtro: any, param: HttpParams) {
     // Parametros de paginacao
     param = param.set('page', filtro.pagina);
     param = param.set('size', filtro.itensPorPagina);
@@ -50,16 +40,18 @@ export class LancamentoService {
       param = param.set('descricao', filtro.descricao);
     }
     if (filtro.dataDeVencimentoDe) {
-      param = param.set('dataDeVencimentoDe', moment(filtro.dataDeVencimentoDe).format('YYYY-MM-DD'));
+      param = param.set('dataDeVencimentoDe',
+        moment(filtro.dataDeVencimentoDe).format('YYYY-MM-DD'));
     }
     if (filtro.dataDeVencimentoAte) {
-      param = param.set('dataDeVencimentoAte', moment(filtro.dataDeVencimentoAte).format('YYYY-MM-DD'));
+      param = param.set('dataDeVencimentoAte',
+        moment(filtro.dataDeVencimentoAte).format('YYYY-MM-DD'));
     }
     return param;
   }
 
-  protected convertDateArrayFromServer(res: EntityArrayResponseType): EntityArrayResponseType {
-    let resultado = null;
+  protected convertDateArrayFromServer(res: any): any {
+    let resultado = {};
     if (res.body) {
         resultado = {
           lancamentos: res.body,
