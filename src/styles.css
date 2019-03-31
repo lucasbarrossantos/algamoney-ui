@@ -55,7 +55,8 @@ label {
 }
 
 .col-cidade {
-    text-align: center
+    text-align: center;
+    width: 280px;
 }
 
 .ui-button-success {

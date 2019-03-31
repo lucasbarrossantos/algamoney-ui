@@ -1,8 +1,9 @@
 import { LancamentoService } from './../lancamento.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Lancamento } from 'src/app/shared/model/lancamento.model';
 import { LazyLoadEvent } from 'primeng/components/common/api';
 import { LancamentoFilter } from 'src/app/shared/model/filtros/lancamento.filter';
+import { ToastyService } from 'ng2-toasty';
 
 @Component({
   selector: 'app-lancamentos-pesquisa',
@@ -26,8 +27,9 @@ export class LancamentosPesquisaComponent implements OnInit {
   lancamentos: Lancamento[];
   filtro = new LancamentoFilter();
   totalRegistros = 0; // Qtd de registro do retorno da consulta
+  @ViewChild('tabela') grid; // @ViewChild('?') recupera algum dado da view
 
-  constructor(private lancamentoService: LancamentoService) { }
+  constructor(private toasty: ToastyService, private lancamentoService: LancamentoService) { }
 
   pesquisar(pagina = 0) {
     this.filtro.pagina = pagina;
@@ -37,6 +39,22 @@ export class LancamentosPesquisaComponent implements OnInit {
         this.totalRegistros = dados.total;
         this.lancamentos = dados.lancamentos.content;
       });
+  }
+
+  excluir(codigo: any) {
+    if (this.grid.first === 0) {
+      this.pesquisar();
+    } else {
+      this.grid.first = 0;
+    }
+
+    this.toasty.success({
+      title: 'Exclusão de Lançamento',
+      msg: 'Lançamento excluído com sucesso!',
+      showClose: true,
+      timeout: 5000
+    });
+
   }
 
   ngOnInit() {

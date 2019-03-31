@@ -27,6 +27,16 @@ export class PessoaService {
    }).pipe(map((res: any) => this.convertDateArrayFromServer(res)));
   }
 
+  listarTodas() {
+    return this.http.get<Pessoa[]>(`${this.resourceUrl}/pessoas`, {
+      params: null, observe: 'response',
+      headers: new HttpHeaders({
+       'Content-Type':  'application/json',
+       Authorization: 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg=='
+     })
+    });
+  }
+
   private filtros(filtro: any, param: HttpParams) {
     // Parametros de paginacao
     param = param.set('page', filtro.pagina);
