@@ -27,8 +27,18 @@ export class PessoaService {
    }).pipe(map((res: any) => this.convertDateArrayFromServer(res)));
   }
 
-  listarTodas() {
+  listarTodas(): Observable<any> {
     return this.http.get<Pessoa[]>(`${this.resourceUrl}/pessoas`, {
+      params: null, observe: 'response',
+      headers: new HttpHeaders({
+       'Content-Type':  'application/json',
+       Authorization: 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg=='
+     })
+    });
+  }
+
+  atualizarStatus(pessoa: Pessoa): Observable<any> {
+    return this.http.put<Pessoa[]>(`${this.resourceUrl}/pessoas/${pessoa.codigo}/ativo`, !pessoa.ativo , {
       params: null, observe: 'response',
       headers: new HttpHeaders({
        'Content-Type':  'application/json',

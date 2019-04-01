@@ -52,6 +52,22 @@ export class PessoaPesquisaComponent implements OnInit, OnDestroy {
     }, (error) => this.errorHandle.handle(error));
   }
 
+  mudarStatus(pessoa: Pessoa) {
+    this.pessoaService.atualizarStatus( pessoa ).subscribe((dados) => {
+      this.toasty.success({
+        title: 'Mudança de status',
+        msg: 'Status alterado com sucesso!',
+        showClose: true,
+        timeout: 5000
+      });
+
+      EventEmitterService.get('PessoasListModification').emit({
+        nome: 'PessoasListModification',
+        mensagem: 'Pessoa alterada.'
+      });
+    }, (error) => this.errorHandle.handle(error));
+  }
+
   onMudarPagina(event: LazyLoadEvent) {
     const pagina = (event.first / event.rows);
     this.pesquisar(pagina);
