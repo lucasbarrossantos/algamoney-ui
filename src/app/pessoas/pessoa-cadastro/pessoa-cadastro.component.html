@@ -1,7 +1,7 @@
 <div class="container-custom">
         <p-card styleClass="ui-card-shadow">
             <div class="ui-g">
-              <form #f="ngForm" autocomplete="off">
+              <form #f="ngForm" autocomplete="off" (ngSubmit)="salvar(f)">
                   <div class="ui-g-12">
                       <h1>Nova pessoa</h1>
                   </div>
@@ -9,7 +9,7 @@
                   <div class="ui-g-12 ui-md-12 ui-fluid">
                       <label>Nome</label>
                       <input pInputText minlength="5" required
-                        ngModel name="nome" #nome="ngModel"/>
+                        ngModel name="nome" #nome="ngModel" [(ngModel)]="pessoa.nome"/>
 
                       <app-message [control]="nome" error="required" 
                         text="Informe o nome"></app-message>
@@ -22,8 +22,9 @@
       
                   <div class="ui-g-12 ui-md-10 ui-fluid">
                         <label>Logradouro</label>
-                        <input pInputText required
-                        ngModel name="logradouro" #logradouro="ngModel"/>
+                        <input pInputText required name="logradouro" 
+                        #logradouro="ngModel" ngModel
+                        [(ngModel)]="pessoa.endereco.logradouro"/>
 
                       <app-message [control]="logradouro" error="required" 
                         text="Informe o logradouro"></app-message>
@@ -31,18 +32,23 @@
 
                   <div class="ui-g-12 ui-md-2 ui-fluid">
                         <label>Número</label>
-                        <input pInputText />
+                        <input pInputText required #numeroCasa="ngModel" ngModel
+                              name="numero" [(ngModel)]="pessoa.endereco.numero"/>
+
+                        <app-message [control]="numeroCasa" error="required" 
+                        text="Informe o número"></app-message>
                   </div>
 
                   <div class="ui-g-12 ui-md-5 ui-fluid">
                         <label>Complemento</label>
-                        <input pInputText/>
+                        <input pInputText placeholder="Opcional"
+                        [(ngModel)]="pessoa.endereco.complemento" name="complemento"/>
                   </div>
 
                   <div class="ui-g-12 ui-md-5 ui-fluid">
                         <label>Bairro</label>
                         <input pInputText required
-                        ngModel name="bairro" #bairro="ngModel"/>
+                        ngModel name="bairro" #bairro="ngModel" [(ngModel)]="pessoa.endereco.bairro"/>
 
                       <app-message [control]="bairro" error="required" 
                         text="Informe o bairro"></app-message>
@@ -50,13 +56,14 @@
 
                   <div class="ui-g-12 ui-md-2 ui-fluid">
                         <label style="text-align: right;">CEP</label>
-                        <p-inputMask mask="99999-999" placeholder="99999-999"></p-inputMask>
+                        <p-inputMask mask="99999-999" placeholder="99999-999" name="cep"
+                        [(ngModel)]="pessoa.endereco.cep"></p-inputMask>
                   </div>
 
                   <div class="ui-g-12 ui-md-5 ui-fluid">
                         <label>Cidade</label>
                         <input pInputText required
-                        ngModel name="cidade" #cidade="ngModel"/>
+                        ngModel name="cidade" #cidade="ngModel" [(ngModel)]="pessoa.endereco.cidade"/>
 
                       <app-message [control]="cidade" error="required" 
                         text="Informe a cidade"></app-message>
@@ -65,7 +72,7 @@
                   <div class="ui-g-12 ui-md-5 ui-fluid">
                         <label>Estado</label>
                         <input pInputText required
-                        ngModel name="estado" #estado="ngModel"/>
+                        ngModel name="estado" #estado="ngModel" [(ngModel)]="pessoa.endereco.estado"/>
 
                       <app-message [control]="estado" error="required" 
                         text="Informe o estado"></app-message>

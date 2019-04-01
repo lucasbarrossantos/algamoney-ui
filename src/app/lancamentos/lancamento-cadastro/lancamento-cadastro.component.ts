@@ -40,8 +40,8 @@ export class LancamentoCadastroComponent implements OnInit {
 
   constructor(
     private categoriaService: CategoriaService,
-    private pessoaService: PessoaService,
     private lancamentoService: LancamentoService,
+    private pessoaService: PessoaService,
     private toasty: ToastyService,
     private errorHandle: ErrorHandleService,
     ) { }

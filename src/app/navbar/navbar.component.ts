@@ -51,7 +51,7 @@ export class NavbarComponent implements OnInit {
           { label: 'Abrir chamado' },
           { label: 'Configurações' },
           { label: 'Sobre' },
-          { label: 'Suporte' }
+          { label: 'Suporte', url: 'http://google.com' }
         ]
       }
     ];

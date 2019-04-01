@@ -1,4 +1,4 @@
-export interface Endereco {
+export class Endereco {
   logradouro: string;
   numero: string;
   complemento: string;
@@ -12,5 +12,10 @@ export class Pessoa {
   codigo: number;
   nome: string;
   ativo: boolean;
-  endereco: Endereco;
+  endereco = new Endereco();
+
+  constructor() {
+    this.ativo = true;
+  }
+
 }
