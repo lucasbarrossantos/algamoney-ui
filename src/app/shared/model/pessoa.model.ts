@@ -9,10 +9,8 @@ export interface Endereco {
 }
 
 export class Pessoa {
-  constructor(
-    public codigo?: number,
-    public nome?: string,
-    public ativo?: boolean,
-    public endereco?: Endereco
-  ) { }
+  codigo: number;
+  nome: string;
+  ativo: boolean;
+  endereco: Endereco;
 }

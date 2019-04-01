@@ -35,7 +35,6 @@ export class PessoaPesquisaComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.sub = EventEmitterService.get('PessoasListModification').subscribe( data => {} );
-    console.log('init', this.sub);
   }
 
   ngOnDestroy() {

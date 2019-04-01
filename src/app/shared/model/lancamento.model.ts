@@ -1,4 +1,6 @@
+import { Categoria } from './categoria.model';
 import { Moment } from 'moment';
+import { Pessoa } from './pessoa.model';
 
 export const enum TipoLancamento {
     RECEITA = 'RECEITA',
@@ -6,15 +8,13 @@ export const enum TipoLancamento {
 }
 
 export class Lancamento {
-  constructor(
-      public codigo?: number,
-      public descricao?: string,
-      public dataVencimento?: Moment,
-      public dataPagamento?: Moment,
-      public valor?: number,
-      public observacao?: string,
-      public categoriaId?: number,
-      public pessoaId?: number,
-      public tipo?: TipoLancamento
-   ) {}
+    codigo: number;
+    descricao: string;
+    dataVencimento: Moment;
+    dataPagamento: Moment;
+    valor: number;
+    observacao: string;
+    categoria = new Categoria();
+    pessoa = new Pessoa();
+    tipo: TipoLancamento;
 }
