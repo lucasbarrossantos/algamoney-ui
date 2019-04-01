@@ -21,6 +21,7 @@ import { MenubarModule } from 'primeng/components/menubar/menubar';
 import { HttpClientModule } from '@angular/common/http';
 import { ButtonModule } from 'primeng/components/button/button';
 import { CoreModule } from './core/core.module';
+import { EventEmitterService } from './shared/utils/event.manager';
 
 
 
@@ -48,7 +49,8 @@ registerLocaleData(localePt, 'pt');
   ],
   providers: [
     {provide: LOCALE_ID, useValue: 'pt' },
-    ConfirmationService
+    ConfirmationService,
+    EventEmitterService
   ],
   bootstrap: [ AppComponent ]
 })

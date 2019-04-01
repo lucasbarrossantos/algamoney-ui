@@ -1,18 +1,19 @@
 import { LancamentoService } from './../lancamento.service';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { Lancamento } from 'src/app/shared/model/lancamento.model';
 import { LazyLoadEvent, ConfirmationService, Message } from 'primeng/components/common/api';
 import { LancamentoFilter } from 'src/app/shared/model/filtros/lancamento.filter';
 import { ToastyService } from 'ng2-toasty';
 import * as moment from 'moment';
 import { ErrorHandleService } from 'src/app/core/error-handle.service';
+import { EventEmitterService } from 'src/app/shared/utils/event.manager';
 
 @Component({
   selector: 'app-lancamentos-pesquisa',
   templateUrl: './lancamentos-pesquisa.component.html',
   styleUrls: ['./lancamentos-pesquisa.component.css']
 })
-export class LancamentosPesquisaComponent implements OnInit {
+export class LancamentosPesquisaComponent implements OnInit, OnDestroy {
 
   pt = {
     firstDayOfWeek: 0,
@@ -31,13 +32,19 @@ export class LancamentosPesquisaComponent implements OnInit {
   totalRegistros = 0; // Qtd de registro do retorno da consulta
   @ViewChild('tabela') grid; // @ViewChild('?') recupera algum dado da view
   msgs: Message[] = [];
+  private sub: any;
 
   constructor(
-    private toasty: ToastyService,
     private lancamentoService: LancamentoService,
+    private toasty: ToastyService,
     private confirmation: ConfirmationService,
     private errorHandle: ErrorHandleService,
-    ) { }
+    ) {
+        EventEmitterService.get('LancamentoListModification').subscribe((data) => {
+          this.grid.first = 0;
+          this.pesquisar();
+        });
+    }
 
   pesquisar(pagina = 0) {
     this.filtro.pagina = pagina;
@@ -51,11 +58,6 @@ export class LancamentosPesquisaComponent implements OnInit {
 
   excluir(codigo: any) {
     this.lancamentoService.excluir(codigo).subscribe((response) => {
-      if (this.grid.first === 0) {
-        this.pesquisar();
-      } else {
-        this.grid.first = 0;
-      }
 
       this.toasty.success({
         title: 'Exclusão de Lançamento',
@@ -64,12 +66,21 @@ export class LancamentosPesquisaComponent implements OnInit {
         timeout: 5000
       });
 
+      EventEmitterService.get('LancamentoListModification').emit({
+        nome: 'LancamentoListModification',
+        mensagem: 'Lançamento alterado.'
+      });
+
     },
     (response) => this.onError(response));
   }
 
   ngOnInit() {
-    // this.pesquisar();
+    this.sub = EventEmitterService.get('LancamentoListModification').subscribe( data => {} );
+  }
+
+  ngOnDestroy() {
+    this.sub.unsubscribe();
   }
 
   onMudarPagina(event: LazyLoadEvent) {
