@@ -1,1 +1,1 @@
-export const ITEMS_POR_PAGINA = 10;
+export const ITEMS_POR_PAGINA = 5;

@@ -49,6 +49,7 @@
                              (onLazyLoad)="onMudarPagina($event)" #tabela>
                         <ng-template pTemplate="header">
                             <tr>
+                                <th class="col-acoes">Tipo</th>
                                 <th>Pessoa</th>
                                 <th>Descrição</th>
                                 <th class="col-data">Vencimento</th>
@@ -59,10 +60,21 @@
                         </ng-template>
                         <ng-template pTemplate="body" let-lancamento>
                             <tr>
+                                <td class="col-acoes">
+                                  <i [ngClass]="lancamento.tipo == 'DESPESA' ? 'pi pi-arrow-up' : 'pi pi-arrow-down' "></i>
+                                </td>
                                 <td>{{ lancamento.pessoa }}</td>
                                 <td>{{ lancamento.descricao }}</td>
-                                <td>{{ lancamento.dataVencimento | date: "dd/MM/yyyy" }}</td>
-                                <td>{{ lancamento.dataPagamento | date: "dd/MM/yyyy" }}</td>
+                                <td style="text-align: center">
+                                    <span [ngClass]="isVencido(lancamento.dataVencimento) ? 'badge badge-danger' : ''">
+                                        {{ lancamento.dataVencimento | date: "dd/MM/yyyy" }}
+                                    </span>
+                                </td>
+                                <td style="text-align: center">
+                                    <span [ngClass]="lancamento.dataPagamento ? 'badge badge-success' : ''">
+                                            {{ lancamento.dataPagamento | date: "dd/MM/yyyy" }}
+                                    </span>
+                                </td>
                                 <td class="col-valor">
                                     <samp [style.color]="lancamento.tipo === 'DESPESA' ? 'red' : 'blue'">
                                         {{lancamento.valor | currency:'BRL':true }}
@@ -73,7 +85,7 @@
                                     style="margin-right: 5px"></a>
             
                                     <button pButton icon="pi pi-trash" pTooltip="Excluir" 
-                                        tooltipPosition="top" (click)="excluir(lancamento.codigo)">
+                                        tooltipPosition="top" (click)="confirmExclusao(lancamento.codigo)">
                                     </button>
                                 </td>
                             </tr>

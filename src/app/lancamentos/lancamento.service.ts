@@ -30,7 +30,7 @@ export class LancamentoService {
   }
 
   excluir(codigo: number) {
-    return this.http.delete<any>(`${this.resourceUrl}/${codigo}`, {
+    return this.http.delete<any>(`${this.resourceUrl}/lancamentos/${codigo}`, {
       observe: 'response',
       headers: new HttpHeaders({
        'Content-Type':  'application/json',

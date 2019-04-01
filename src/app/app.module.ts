@@ -14,14 +14,15 @@ import { PessoasModule } from './pessoas/pessoas.module';
 
 // Meus componentes
 import { NavbarComponent } from './navbar/navbar.component';
+import { ConfirmationService } from 'primeng/components/common/api';
 
 import { LancamentosModule } from './lancamentos/lancamentos.module';
 import { MenubarModule } from 'primeng/components/menubar/menubar';
 import { HttpClientModule } from '@angular/common/http';
 import { ButtonModule } from 'primeng/components/button/button';
+import { CoreModule } from './core/core.module';
 
-// ToastyModule
-import {ToastyModule} from 'ng2-toasty';
+
 
 registerLocaleData(localePt, 'pt');
 
@@ -43,11 +44,12 @@ registerLocaleData(localePt, 'pt');
     // Modules do primeNG
     BrowserAnimationsModule,
     ButtonModule,
-
-    // ToastyModule
-    ToastyModule.forRoot()
+    CoreModule
   ],
-  providers: [ {provide: LOCALE_ID, useValue: 'pt' } ],
+  providers: [
+    {provide: LOCALE_ID, useValue: 'pt' },
+    ConfirmationService
+  ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }
