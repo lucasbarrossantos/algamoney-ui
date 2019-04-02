@@ -4,9 +4,9 @@ import { PaginaNaoEncontradaComponent } from './core/pagina-nao-encontrada.compo
 import { PessoaPesquisaComponent } from './pessoas/pessoa-pesquisa/pessoa-pesquisa.component';
 
 export const routes: Routes = [
-  { path: '', redirectTo: 'lancamentos', pathMatch: 'full' },
   { path: 'pessoas', component: PessoaPesquisaComponent },
   { path: 'pagina-nao-encontrada', component: PaginaNaoEncontradaComponent },
+  { path: '', redirectTo: 'lancamentos', pathMatch: 'full' },
   /* { path: '**', redirectTo: 'pagina-nao-encontrada' } */
 ];
 

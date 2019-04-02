@@ -1,3 +1,4 @@
+import { map } from 'rxjs/operators';
 import { LancamentoService } from './../lancamento.service';
 import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { Lancamento } from 'src/app/shared/model/lancamento.model';

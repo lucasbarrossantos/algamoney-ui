@@ -45,8 +45,7 @@ export const routes: Routes = [
         data: {
             pageTitle: 'Edição de lançamento'
         }
-    },
-    { path: '**', redirectTo: 'pagina-nao-encontrada' }
+    }
 ];
 
 

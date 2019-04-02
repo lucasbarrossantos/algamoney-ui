@@ -92,13 +92,16 @@ export class LancamentoService {
     return param;
   }
 
-  protected convertDateArrayFromServer(res: any): any {
+  protected convertDateArrayFromServer(res: HttpResponse<any>): any {
     let resultado = {};
     if (res.body) {
-        resultado = {
-          lancamentos: res.body,
-          total: res.body.totalElements
-        };
+
+      console.log('content', res.body.content);
+
+      resultado = {
+        lancamentos: res.body,
+        total: res.body.totalElements
+      };
     }
     return resultado;
   }
