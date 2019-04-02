@@ -22,7 +22,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ButtonModule } from 'primeng/components/button/button';
 import { CoreModule } from './core/core.module';
 import { EventEmitterService } from './shared/utils/event.manager';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { lancamentoRoute } from './lancamentos/lancamento.router';
 
 registerLocaleData(localePt, 'pt');
@@ -41,7 +41,6 @@ registerLocaleData(localePt, 'pt');
     PessoasModule,
     MenubarModule,
     HttpClientModule,
-    RouterModule.forRoot(lancamentoRoute),
 
     // Modules do primeNG
     BrowserAnimationsModule,

@@ -3,10 +3,11 @@ import { LancamentoService } from './lancamento.service';
 import { Injectable } from '@angular/core';
 import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Routes } from '@angular/router';
 import { Observable, of } from 'rxjs';
-import { filter, map } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { HttpResponse } from '@angular/common/http';
 import { LancamentosPesquisaComponent } from './lancamentos-pesquisa/lancamentos-pesquisa.component';
 import { LancamentoCadastroComponent } from './lancamento-cadastro/lancamento-cadastro.component';
+import { PaginaNaoEncontradaComponent } from '../core/pagina-nao-encontrada.component';
 
 @Injectable({ providedIn: 'root' })
 export class LancamentoResolve implements Resolve<Lancamento> {
@@ -25,14 +26,10 @@ export class LancamentoResolve implements Resolve<Lancamento> {
 }
 
 export const lancamentoRoute: Routes = [
+    { path: '', redirectTo: 'lancamentos', pathMatch: 'full' },
     {
         path: 'lancamentos',
-        component: LancamentosPesquisaComponent,
-        resolve: { },
-        data: {
-            defaultSort: 'codigo,asc',
-            pageTitle: 'Lançamentos'
-        }
+        component: LancamentosPesquisaComponent
     },
     {
         path: 'novo',
@@ -53,5 +50,7 @@ export const lancamentoRoute: Routes = [
         data: {
             pageTitle: 'Edição de lançamento'
         }
-    }
+    },
+    { path: 'pagina-nao-encontrada', component: PaginaNaoEncontradaComponent },
+    { path: '**', redirectTo: 'pagina-nao-encontrada' },
 ];

@@ -7,6 +7,7 @@ import { ToastyService } from 'ng2-toasty';
 import * as moment from 'moment';
 import { ErrorHandleService } from 'src/app/core/error-handle.service';
 import { EventEmitterService } from 'src/app/shared/utils/event.manager';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-lancamentos-pesquisa',
@@ -39,6 +40,7 @@ export class LancamentosPesquisaComponent implements OnInit, OnDestroy {
     private toasty: ToastyService,
     private confirmation: ConfirmationService,
     private errorHandle: ErrorHandleService,
+    private title: Title
     ) {
         EventEmitterService.get('LancamentoListModification').subscribe((data) => {
           this.grid.first = 0;
@@ -76,6 +78,7 @@ export class LancamentosPesquisaComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.title.setTitle('Pesquisa de lançamentos');
     this.sub = EventEmitterService.get('LancamentoListModification').subscribe( data => {} );
   }
 

@@ -9,6 +9,7 @@ import { Categoria } from 'src/app/shared/model/categoria.model';
 import { CategoriaService } from 'src/app/categoria/categoria.service';
 import { ErrorHandleService } from 'src/app/core/error-handle.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-lancamento-cadastro',
@@ -45,14 +46,15 @@ export class LancamentoCadastroComponent implements OnInit {
     private toasty: ToastyService,
     private errorHandle: ErrorHandleService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private title: Title
     ) { }
 
   ngOnInit() {
-
+    this.title.setTitle('Novo lançamento');
     this.route.data.subscribe(({ lancamento }) => {
       this.lancamento = lancamento;
-  });
+    });
 
     this.carregarCategorias();
     this.carregarPessoas();

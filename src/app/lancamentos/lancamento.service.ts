@@ -69,7 +69,7 @@ export class LancamentoService {
             Authorization: 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg=='
           })
         }).pipe(map((res: any) => this.convertDateFromServer(res)));
-}
+  }
 
 
   private filtros(filtro: any, param: HttpParams) {
