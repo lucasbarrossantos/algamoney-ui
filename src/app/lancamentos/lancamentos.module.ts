@@ -18,6 +18,7 @@ import { CardModule } from 'primeng/components/card/card';
 import { InputTextareaModule } from 'primeng/components/inputtextarea/inputtextarea';
 import { DropdownModule } from 'primeng/components/dropdown/dropdown';
 import { SharedModule } from '../shared/shared.module';
+import { LancamentosRoutingModule } from './lancamentos-routing';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,9 @@ import { SharedModule } from '../shared/shared.module';
 
     // Shared
     SharedModule,
+
+    // Rotas para o lancamento
+    LancamentosRoutingModule
   ],
   exports: [ ]
 })

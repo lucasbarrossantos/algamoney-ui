@@ -17,8 +17,8 @@ export class NavbarComponent implements OnInit {
         label: 'Início',
         items: [
           { label: 'Categorias' },
-          { label: 'Lançamentos' },
-          { label: 'Pessoas' }
+          { label: 'Lançamentos', routerLink: '/lancamentos' },
+          { label: 'Pessoas', routerLink: '/pessoas' }
         ]
       },
       {
@@ -28,7 +28,7 @@ export class NavbarComponent implements OnInit {
             label: 'Lançamentos',
             items: [
               { label: 'Listar', routerLink: '/lancamentos' },
-              { label: 'Novo', routerLink: '/novo' }
+              { label: 'Novo', routerLink: '/lancamentos/novo' }
             ]
           },
           { label: 'Boletos' },

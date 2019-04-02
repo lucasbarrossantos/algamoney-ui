@@ -1,13 +1,12 @@
 import { Lancamento } from '../shared/model/lancamento.model';
 import { LancamentoService } from './lancamento.service';
-import { Injectable } from '@angular/core';
-import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Routes } from '@angular/router';
+import { Injectable, NgModule } from '@angular/core';
+import { Resolve, ActivatedRouteSnapshot, Routes, RouterModule } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { HttpResponse } from '@angular/common/http';
 import { LancamentosPesquisaComponent } from './lancamentos-pesquisa/lancamentos-pesquisa.component';
 import { LancamentoCadastroComponent } from './lancamento-cadastro/lancamento-cadastro.component';
-import { PaginaNaoEncontradaComponent } from '../core/pagina-nao-encontrada.component';
 
 @Injectable({ providedIn: 'root' })
 export class LancamentoResolve implements Resolve<Lancamento> {
@@ -25,14 +24,10 @@ export class LancamentoResolve implements Resolve<Lancamento> {
     }
 }
 
-export const lancamentoRoute: Routes = [
-    { path: '', redirectTo: 'lancamentos', pathMatch: 'full' },
+export const routes: Routes = [
+    { path: 'lancamentos', component: LancamentosPesquisaComponent },
     {
-        path: 'lancamentos',
-        component: LancamentosPesquisaComponent
-    },
-    {
-        path: 'novo',
+        path: 'lancamentos/novo',
         component: LancamentoCadastroComponent,
         resolve: {
             lancamento: LancamentoResolve
@@ -51,6 +46,14 @@ export const lancamentoRoute: Routes = [
             pageTitle: 'Edição de lançamento'
         }
     },
-    { path: 'pagina-nao-encontrada', component: PaginaNaoEncontradaComponent },
-    { path: '**', redirectTo: 'pagina-nao-encontrada' },
+    { path: '**', redirectTo: 'pagina-nao-encontrada' }
 ];
+
+
+@NgModule({
+    imports: [
+        RouterModule.forChild(routes)
+    ],
+    exports: [ RouterModule ]
+  })
+export class LancamentosRoutingModule { }
