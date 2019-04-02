@@ -1,3 +1,4 @@
+import { AuthService } from './../seguranca/auth.service';
 import { Title } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -23,6 +24,6 @@ import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada.component'
     // ToastyModule
     ToastyModule
   ],
-  providers: [ Title ]
+  providers: [ Title, AuthService ]
 })
 export class CoreModule { }

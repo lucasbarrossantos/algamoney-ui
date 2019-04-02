@@ -53,7 +53,8 @@ export class NavbarComponent implements OnInit {
           { label: 'Sobre' },
           { label: 'Suporte', url: 'http://google.com' }
         ]
-      }
+      },
+      { label: 'Login',  routerLink: '/login' }
     ];
   }
 }

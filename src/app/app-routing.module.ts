@@ -11,6 +11,9 @@ export const routes: Routes = [
   // Pessoas
   { path: 'pessoas', loadChildren: '../app/pessoas/pessoas.module#PessoasModule' },
 
+  // Login
+  { path: 'login', loadChildren: '../app/seguranca/seguranca.module#SegurancaModule' },
+
   // Alternativas
   { path: 'pagina-nao-encontrada', component: PaginaNaoEncontradaComponent },
   { path: '**', redirectTo: 'pagina-nao-encontrada' }
