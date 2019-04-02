@@ -58,9 +58,31 @@ export class LancamentoCadastroComponent implements OnInit {
     this.carregarPessoas();
   }
 
+  get editando() {
+    return Boolean(this.lancamento.codigo);
+  }
+
   salvar(form: FormControl) {
+    if (this.editando) {
+      this.atualizarLancamento(form);
+    } else {
+      this.adicionarLancamento(form);
+    }
+  }
+
+  adicionarLancamento(form: FormControl) {
     this.lancamentoService.salvar(this.lancamento).subscribe(() => {
       this.toasty.success('Lançamento salvo com sucesso!');
+      form.reset();
+      this.lancamento = new Lancamento();
+
+      this.router.navigate(['/lancamentos']);
+    }, (error) => this.errorHandle.handle(error));
+  }
+
+  atualizarLancamento(form: FormControl) {
+    this.lancamentoService.atualizar(this.lancamento).subscribe(() => {
+      this.toasty.success('Lançamento atualizado com sucesso!');
       form.reset();
       this.lancamento = new Lancamento();
 

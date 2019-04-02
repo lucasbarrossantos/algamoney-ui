@@ -49,6 +49,16 @@ export class LancamentoService {
     });
   }
 
+  atualizar(lancamento: Lancamento): Observable<any> {
+    return this.http
+        .put<Lancamento>(`${this.resourceUrl}/lancamentos/${lancamento.codigo}`, lancamento, { observe: 'response',
+        headers: new HttpHeaders({
+          'Content-Type':  'application/json',
+          Authorization: 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg=='
+        })
+      }).pipe(map((res: any) => this.convertDateFromServer(res)));
+  }
+
   buscarPorCodigo(id: number): Observable<any> {
     return this.http
         .get<Lancamento>(`${this.resourceUrl}/lancamentos/${id}`,

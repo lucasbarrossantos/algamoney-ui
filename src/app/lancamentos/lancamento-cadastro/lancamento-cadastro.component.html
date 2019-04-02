@@ -3,7 +3,7 @@
       <div class="ui-g">
         <form #f="ngForm" autocomplete="off" (ngSubmit)="salvar(f)">
             <div class="ui-g-12">
-                <h1>Novo lançamento</h1>
+                <h1> {{ lancamento?.codigo ? 'Editar lançamento' : 'Novo lançamento' }} {{ lancamento?.codigo }}</h1>
             </div>
 
             <div class="ui-g-12">
