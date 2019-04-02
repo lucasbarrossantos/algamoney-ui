@@ -37,6 +37,18 @@ export class PessoaService {
     });
   }
 
+  buscarPorCodigo(id: number): Observable<any> {
+    return this.http
+        .get<Pessoa>(`${this.resourceUrl}/pessoas/${id}`,
+        {
+          observe: 'response',
+          headers: new HttpHeaders({
+            'Content-Type':  'application/json',
+            Authorization: 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg=='
+          })
+        }).pipe(map((res: any) => res ));
+  }
+
   listarPessoasResumo(): Observable<any> {
     return this.http.get<Pessoa[]>(`${this.resourceUrl}/pessoas?resumo`, {
       params: null, observe: 'response',
@@ -75,6 +87,16 @@ export class PessoaService {
        Authorization: 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg=='
      })
     });
+  }
+
+  atualizar(pessoa: Pessoa): Observable<any> {
+    return this.http
+        .put<Pessoa>(`${this.resourceUrl}/pessoas/${pessoa.codigo}`, pessoa, { observe: 'response',
+        headers: new HttpHeaders({
+          'Content-Type':  'application/json',
+          Authorization: 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg=='
+        })
+      });
   }
 
   private filtros(filtro: any, param: HttpParams) {

@@ -9,9 +9,9 @@ export class Endereco {
 }
 
 export class Pessoa {
-  codigo: number;
-  nome: string;
-  ativo: boolean;
+  codigo?: number;
+  nome?: string;
+  ativo?: boolean;
   endereco = new Endereco();
 
   constructor() {

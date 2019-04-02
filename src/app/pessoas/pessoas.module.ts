@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PessoaCadastroComponent } from './pessoa-cadastro/pessoa-cadastro.component';
 import { PessoaPesquisaComponent } from './pessoa-pesquisa/pessoa-pesquisa.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+/* import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; */
 import { InputTextModule } from 'primeng/components/inputtext/inputtext';
 import { ButtonModule } from 'primeng/components/button/button';
 import { TableModule } from 'primeng/components/table/table';
@@ -15,6 +15,7 @@ import { DropdownModule } from 'primeng/components/dropdown/dropdown';
 import { InputMaskModule } from 'primeng/components/inputmask/inputmask';
 import { FormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
+import { PessoasRoutingModule } from './pessoas-routing';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,7 @@ import { SharedModule } from '../shared/shared.module';
     FormsModule,
 
     // Modules do primeNG
-    BrowserAnimationsModule,
+    /* BrowserAnimationsModule, */
     InputTextModule,
     ButtonModule,
     TableModule,
@@ -37,6 +38,7 @@ import { SharedModule } from '../shared/shared.module';
     SelectButtonModule,
     DropdownModule,
     InputMaskModule,
+    PessoasRoutingModule,
 
     // Shared
     SharedModule

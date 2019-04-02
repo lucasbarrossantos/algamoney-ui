@@ -33,7 +33,7 @@
             
                 <div class="ui-g-12">
                     <button pButton type="submit" label="Pesquisar" class="ui-button-info"></button>
-                    <a pButton label="Novo Lançamento" routerLink="/lancamentos/novo" class="ui-button-info" 
+                    <a pButton label="Novo Lançamento" routerLink="novo" class="ui-button-info" 
                         style="float: right"> </a>
                 </div>
             </form>
@@ -82,7 +82,8 @@
                                 </td>
                                 <td class="col-acoes">
                                     <a pButton icon="pi pi-pencil" pTooltip="Editar" 
-                                    tooltipPosition="top" [routerLink]="[ '/lancamentos', lancamento.codigo ]"
+                                    tooltipPosition="top" 
+                                    [routerLink]="[ '/lancamentos', lancamento.codigo ]"
                                     style="margin-right: 5px"></a>
             
                                     <button pButton icon="pi pi-trash" pTooltip="Excluir" 

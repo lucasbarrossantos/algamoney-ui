@@ -95,9 +95,6 @@ export class LancamentoService {
   protected convertDateArrayFromServer(res: HttpResponse<any>): any {
     let resultado = {};
     if (res.body) {
-
-      console.log('content', res.body.content);
-
       resultado = {
         lancamentos: res.body,
         total: res.body.totalElements

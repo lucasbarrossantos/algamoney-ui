@@ -14,7 +14,7 @@ export class LancamentoResolve implements Resolve<Lancamento> {
     constructor(private service: LancamentoService) {}
 
     resolve(route: ActivatedRouteSnapshot): Observable<Lancamento> {
-        const id = route.params['codigo'] ? route.params['codigo'] : null;
+        const id = route.params.codigo ? route.params.codigo : null;
         if (id) {
             return this.service.buscarPorCodigo(id).pipe(
                 map((lancamento: HttpResponse<Lancamento>) => lancamento.body)
@@ -25,9 +25,9 @@ export class LancamentoResolve implements Resolve<Lancamento> {
 }
 
 export const routes: Routes = [
-    { path: 'lancamentos', component: LancamentosPesquisaComponent },
+    { path: '', component: LancamentosPesquisaComponent },
     {
-        path: 'lancamentos/novo',
+        path: 'novo',
         component: LancamentoCadastroComponent,
         resolve: {
             lancamento: LancamentoResolve
@@ -37,7 +37,7 @@ export const routes: Routes = [
         }
     },
     {
-        path: 'lancamentos/:codigo',
+        path: ':codigo',
         component: LancamentoCadastroComponent,
         resolve: {
             lancamento: LancamentoResolve

@@ -7,6 +7,7 @@ import { ToastyService } from 'ng2-toasty';
 import { ErrorHandleService } from 'src/app/core/error-handle.service';
 import { Subscription } from 'rxjs';
 import { EventEmitterService } from 'src/app/shared/utils/event.manager';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-pessoa-pesquisa',
@@ -25,7 +26,8 @@ export class PessoaPesquisaComponent implements OnInit, OnDestroy {
     private pessoaService: PessoaService,
     private toasty: ToastyService,
     private confirmation: ConfirmationService,
-    private errorHandle: ErrorHandleService
+    private errorHandle: ErrorHandleService,
+    private title: Title
     ) {
       EventEmitterService.get('PessoasListModification').subscribe((data) => {
         this.grid.first = 0;
@@ -34,12 +36,12 @@ export class PessoaPesquisaComponent implements OnInit, OnDestroy {
     }
 
   ngOnInit() {
+    this.title.setTitle('Pesquisa de pessoa');
     this.sub = EventEmitterService.get('PessoasListModification').subscribe( data => {} );
   }
 
   ngOnDestroy() {
     this.sub.unsubscribe();
-    console.log('destroy', this.sub);
   }
 
   pesquisar(pagina = 0) {

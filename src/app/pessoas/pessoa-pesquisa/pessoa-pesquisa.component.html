@@ -13,7 +13,7 @@
 
           <div class="ui-g-12">
               <button pButton type="submit" label="Pesquisar" class="ui-button-info"></button>
-              <a pButton label="Nova pessoa" class="ui-button-info" 
+              <a pButton label="Nova pessoa" routerLink="nova" class="ui-button-info" 
                   style="float: right"> </a>
           </div>
        </form>
@@ -49,6 +49,7 @@
                </td>
               <td class="col-acoes">
                 <a pButton icon="pi pi-pencil" pTooltip="Editar"
+                  [routerLink]="[ '/pessoas', pessoa.codigo ]"
                   tooltipPosition="top" style="margin-right: 5px">
                 </a>
                 <button pButton icon="pi pi-trash"
