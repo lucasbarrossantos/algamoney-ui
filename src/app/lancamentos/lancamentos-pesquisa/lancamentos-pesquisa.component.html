@@ -9,13 +9,13 @@
             
                 <div class="ui-g-12 ui-md-6 ui-fluid">
                     <label> Descrição </label>
-                    <input type="text" pInputText 
+                    <input type="text" pInputText placeholder="Pesquisa por descrição."
                     name="filtro.descricao" [(ngModel)]="filtro.descricao"/>
                 </div>
 
                 <div class="ui-g-12 ui-md-6 ui-fluid">
                     <label> Pessoa </label>
-                    <input type="text" pInputText />
+                    <input type="text" pInputText placeholder="Pesquisa por nome da pessoa."/>
                 </div>
             
                 <div class="ui-g-12 ui-md-12">
@@ -33,7 +33,7 @@
             
                 <div class="ui-g-12">
                     <button pButton type="submit" label="Pesquisar" class="ui-button-info"></button>
-                    <a pButton label="Novo Lançamento" class="ui-button-info" 
+                    <a pButton label="Novo Lançamento" routerLink="/novo" class="ui-button-info" 
                         style="float: right"> </a>
                 </div>
             </form>
@@ -81,7 +81,8 @@
                                     </samp>
                                 </td>
                                 <td class="col-acoes">
-                                    <a pButton icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top"
+                                    <a pButton icon="pi pi-pencil" pTooltip="Editar" 
+                                    tooltipPosition="top" [routerLink]="[ '/lancamentos', lancamento.codigo ]"
                                     style="margin-right: 5px"></a>
             
                                     <button pButton icon="pi pi-trash" pTooltip="Excluir" 

@@ -8,6 +8,7 @@ export const enum TipoLancamento {
 }
 
 export class Lancamento {
+
     codigo: number;
     descricao: string;
     dataVencimento: Moment;

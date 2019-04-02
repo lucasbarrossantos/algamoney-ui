@@ -1,3 +1,7 @@
+import { PessoaCadastroComponent } from './pessoas/pessoa-cadastro/pessoa-cadastro.component';
+import { PessoaPesquisaComponent } from './pessoas/pessoa-pesquisa/pessoa-pesquisa.component';
+import { LancamentoCadastroComponent } from './lancamentos/lancamento-cadastro/lancamento-cadastro.component';
+import { LancamentosPesquisaComponent } from './lancamentos/lancamentos-pesquisa/lancamentos-pesquisa.component';
 import { LOCALE_ID } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
@@ -22,8 +26,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { ButtonModule } from 'primeng/components/button/button';
 import { CoreModule } from './core/core.module';
 import { EventEmitterService } from './shared/utils/event.manager';
-
-
+import { Routes, RouterModule } from '@angular/router';
+import { lancamentoRoute } from './lancamentos/lancamento.router';
 
 registerLocaleData(localePt, 'pt');
 
@@ -41,6 +45,7 @@ registerLocaleData(localePt, 'pt');
     PessoasModule,
     MenubarModule,
     HttpClientModule,
+    RouterModule.forRoot(lancamentoRoute),
 
     // Modules do primeNG
     BrowserAnimationsModule,

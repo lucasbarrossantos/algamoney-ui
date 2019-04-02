@@ -4,11 +4,11 @@ import { FormControl } from '@angular/forms';
 import { Lancamento } from 'src/app/shared/model/lancamento.model';
 import { PessoaService } from './../../pessoas/pessoa.service';
 import { Pessoa } from './../../shared/model/pessoa.model';
-import { map } from 'rxjs/operators';
 import { Component, OnInit } from '@angular/core';
 import { Categoria } from 'src/app/shared/model/categoria.model';
 import { CategoriaService } from 'src/app/categoria/categoria.service';
 import { ErrorHandleService } from 'src/app/core/error-handle.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-lancamento-cadastro',
@@ -44,9 +44,16 @@ export class LancamentoCadastroComponent implements OnInit {
     private pessoaService: PessoaService,
     private toasty: ToastyService,
     private errorHandle: ErrorHandleService,
+    private route: ActivatedRoute,
+    private router: Router
     ) { }
 
   ngOnInit() {
+
+    this.route.data.subscribe(({ lancamento }) => {
+      this.lancamento = lancamento;
+  });
+
     this.carregarCategorias();
     this.carregarPessoas();
   }
@@ -56,6 +63,8 @@ export class LancamentoCadastroComponent implements OnInit {
       this.toasty.success('Lançamento salvo com sucesso!');
       form.reset();
       this.lancamento = new Lancamento();
+
+      this.router.navigate(['/lancamentos']);
     }, (error) => this.errorHandle.handle(error));
   }
 

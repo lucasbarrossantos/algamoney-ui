@@ -49,6 +49,18 @@ export class LancamentoService {
     });
   }
 
+  buscarPorCodigo(id: number): Observable<any> {
+    return this.http
+        .get<Lancamento>(`${this.resourceUrl}/lancamentos/${id}`,
+        {
+          observe: 'response',
+          headers: new HttpHeaders({
+            'Content-Type':  'application/json',
+            Authorization: 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg=='
+          })
+        }).pipe(map((res: any) => this.convertDateFromServer(res)));
+}
+
 
   private filtros(filtro: any, param: HttpParams) {
     // Parametros de paginacao
@@ -79,6 +91,16 @@ export class LancamentoService {
         };
     }
     return resultado;
+  }
+
+  protected convertDateFromServer(res: any): any {
+    if (res.body) {
+        res.body.dataVencimento = res.body.dataVencimento != null ?
+          moment(res.body.dataVencimento, 'YYYY-MM-DD').toDate() : null;
+        res.body.dataPagamento = res.body.dataPagamento != null ?
+         moment(res.body.dataPagamento, 'YYYY-MM-DD').toDate() : null;
+    }
+    return res;
   }
 
 }
